@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Car Site{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'carapp/css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Car Site</h1>
+            <nav>
+                <a href="{% url 'carapp:homepage' %}">Home</a> |
+                <a href="{% url 'carapp:aboutus' %}">About Us</a>
+            </nav>
+            <hr>
+
+            <form action="{% url 'carapp:search' %}" method="get" style="display:inline;">
+                <input type="text" name="q" placeholder="Search Car Types">
+                <button type="submit">Search</button>
+            </form>            
+
+        </header>
+        
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

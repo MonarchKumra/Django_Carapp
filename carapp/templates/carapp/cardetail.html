@@ -1,0 +1,21 @@
+{% extends "carapp/base.html" %}
+
+{% block title %}Car Details{% endblock %}
+
+{% block content %}
+    <h2>Following are the Vehicles in {{ cartype.name }} with Cartype No {{ cartype.id }}:</h2>
+
+    {% if cartype.website_url %}
+        <p>Official Website: <a href="{{ cartype.website_url }}" target="_blank">{{ cartype.website_url }}</a></p>
+    {% endif %}
+
+    <ul>
+        {% for vehicle in vehicles %}
+            <li>{{ vehicle.name }}</li>
+        {% empty %}
+            <li>No vehicles available for this car type.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'carapp:homepage' %}">Back to Home</a>
+{% endblock %}

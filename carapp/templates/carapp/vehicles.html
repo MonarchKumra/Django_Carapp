@@ -1,0 +1,14 @@
+<!-- carapp/templates/carapp/vehicles.html -->
+
+{% extends "carapp/base.html" %}
+
+{% block content %}
+<h2>Available Vehicles</h2>
+<ul>
+    {% for vehicle in vehicles %}
+        <li>{{ vehicle.name }}</li>
+    {% endfor %}
+</ul>
+
+<p><a href="{% url 'carapp:orderhere' %}">Place a New Order</a></p>
+{% endblock %}

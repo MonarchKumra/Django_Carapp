@@ -33,3 +33,10 @@ def search(request):
     query = request.GET.get('q')
     results = CarType.objects.filter(name__icontains=query) if query else None
     return render(request, 'carapp/search.html', {'query': query, 'results': results})
+
+def vehicles(request):
+    vehicles_list = Vehicle.objects.all()  # Fetch all vehicles from the database
+    return render(request, 'carapp/vehicles.html', {'vehicles': vehicles_list})
+
+def orderhere(request):
+    return render(request, 'carapp/orderhere.html', {'message': "You can place your order here."})

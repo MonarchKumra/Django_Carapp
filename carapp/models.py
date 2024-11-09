@@ -7,9 +7,31 @@ class CarType(models.Model):
     def __str__(self):
         return self.name
 
-class Vehicle(models.Model):
+class Feature(models.Model):
     name = models.CharField(max_length=50)
-    cartype = models.ForeignKey(CarType, related_name='vehicles', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
+class Vehicle(models.Model):
+    name = models.CharField(max_length=50)
+    cartype = models.ForeignKey(CarType, related_name='vehicles', on_delete=models.CASCADE)
+    features = models.ManyToManyField(Feature, related_name='vehicles', blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Buyer(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
+
+class OrderVehicle(models.Model):
+    vehicle = models.ForeignKey(Vehicle, related_name='orders', on_delete=models.CASCADE)
+    buyer = models.ForeignKey(Buyer, related_name='orders', on_delete=models.CASCADE)
+    vehicles_ordered = models.PositiveIntegerField()  # This represents the number of vehicles ordered
+
+    def __str__(self):
+        return f"Order by {self.buyer.name} for {self.vehicle.name} (Quantity: {self.vehicles_ordered})"

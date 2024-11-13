@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView
 from django.db.models import Q
-from .models import CarType, Vehicle
+from .forms import OrderVehicleForm
+from .models import CarType, Vehicle, OrderVehicle
 
 def homepage(request):
     cartype_list = CarType.objects.all().order_by('id')
@@ -31,12 +32,43 @@ class CarDetailView(DetailView):
 
 def search(request):
     query = request.GET.get('q')
-    results = CarType.objects.filter(name__icontains=query) if query else None
-    return render(request, 'carapp/search.html', {'query': query, 'results': results})
+    vehicles = Vehicle.objects.all()
+    selected_vehicle = None
+    price = None
+
+    if request.method == 'POST':
+        selected_vehicle_id = request.POST.get('vehicle')
+        selected_vehicle = Vehicle.objects.get(id=selected_vehicle_id)
+        price = selected_vehicle.price
+
+    return render(request, 'carapp/search.html', {
+        'query': query,
+        'vehicles': vehicles,
+        'selected_vehicle': selected_vehicle,
+        'price': price
+    })
 
 def vehicles(request):
-    vehicles_list = Vehicle.objects.all()  # Fetch all vehicles from the database
+    vehicles_list = Vehicle.objects.all() 
     return render(request, 'carapp/vehicles.html', {'vehicles': vehicles_list})
 
 def orderhere(request):
-    return render(request, 'carapp/orderhere.html', {'message': "You can place your order here."})
+    msg = ''
+    form = OrderVehicleForm(request.POST or None)
+    vehiclelist = Vehicle.objects.all()
+
+    if request.method == 'POST' and form.is_valid():
+        order = form.save(commit=False)
+        if order.vehicles_ordered <= order.vehicle.instock:
+            order.vehicle.instock -= order.vehicles_ordered 
+            order.vehicle.save()
+            order.save()
+            msg = 'Your vehicle has been ordered successfully.'
+        else:
+            msg = 'We do not have sufficient stock to fill your order.'
+            return render(request, 'carapp/nosuccess_order.html', {'msg': msg})
+
+    return render(request, 'carapp/orderhere.html', {'form': form, 'msg': msg, 'vehiclelist': vehiclelist})
+
+def teamdetail(request):
+    return render(request, 'carapp/teamdetail.html')

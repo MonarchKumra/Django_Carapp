@@ -1,6 +1,30 @@
-<!-- carapp/templates/carapp/orderhere.html -->
 {% extends "carapp/base.html" %}
+{% load static %}
+
+{% block title %}Place an Order{% endblock %}
 
 {% block content %}
-<h2>{{ message }}</h2>
+<div class="container">
+    <h2>Place an Order</h2>
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+    
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="id_vehicle">Vehicle:</label>
+            {{ form.vehicle }}
+        </p>
+        <p>
+            <label for="id_buyer">Buyer:</label>
+            {{ form.buyer }}
+        </p>
+        <p>
+            <label for="id_vehicles_ordered">Vehicles Ordered:</label>
+            {{ form.vehicles_ordered }}
+        </p>
+        <button type="submit">Order Now</button>
+    </form>
+</div>
 {% endblock %}

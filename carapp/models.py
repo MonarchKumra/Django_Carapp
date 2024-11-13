@@ -15,6 +15,8 @@ class Feature(models.Model):
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=50)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    instock = models.PositiveIntegerField(default=0)
     cartype = models.ForeignKey(CarType, related_name='vehicles', on_delete=models.CASCADE)
     features = models.ManyToManyField(Feature, related_name='vehicles', blank=True)
 
@@ -31,7 +33,7 @@ class Buyer(models.Model):
 class OrderVehicle(models.Model):
     vehicle = models.ForeignKey(Vehicle, related_name='orders', on_delete=models.CASCADE)
     buyer = models.ForeignKey(Buyer, related_name='orders', on_delete=models.CASCADE)
-    vehicles_ordered = models.PositiveIntegerField()  # This represents the number of vehicles ordered
+    vehicles_ordered = models.PositiveIntegerField()
 
     def __str__(self):
         return f"Order by {self.buyer.name} for {self.vehicle.name} (Quantity: {self.vehicles_ordered})"

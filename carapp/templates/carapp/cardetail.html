@@ -3,7 +3,8 @@
 {% block title %}Car Details{% endblock %}
 
 {% block content %}
-    <h2>Following are the Vehicles in {{ cartype.name }} with Cartype No {{ cartype.id }}:</h2>
+<div class="container">
+    <h2>Vehicles in {{ cartype.name }} (Car Type No: {{ cartype.id }})</h2>
 
     {% if cartype.website_url %}
         <p>Official Website: <a href="{{ cartype.website_url }}" target="_blank">{{ cartype.website_url }}</a></p>
@@ -17,15 +18,6 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'carapp:homepage' %}">Back to Home</a>
-<!--{% endblock %}-->
-<!--{% extends "carapp/base.html" %}-->
-
-<!--{% block title %}About Us{% endblock %}-->
-
-<!--{% block content %}-->
-<!--    <h2>About Us</h2>-->
-<!--    <p>We provide comprehensive details on various car types and models.</p>-->
-<!--    <p> We have a wide range of car options to choose from and links to the car company's website! </p>-->
-<!--    <p><a class="back-link" href="{% url 'carapp:homepage' %}">Back to Home</a></p>-->
-<!--{% endblock %}-->
+    <a href="{% url 'carapp:homepage' %}" class="back-link">Back to Home</a>
+</div>
+{% endblock %}

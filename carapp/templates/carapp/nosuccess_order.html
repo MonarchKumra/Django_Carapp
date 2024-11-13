@@ -1,0 +1,13 @@
+<!-- carapp/templates/carapp/nosuccess_order.html -->
+{% extends "carapp/base.html" %}
+{% load static %}
+
+{% block title %}Order Unsuccessful{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Order Unsuccessful</h2>
+    <p>{{ msg }}</p>
+    <p><a href="{% url 'carapp:orderhere' %}">Try Again</a></p>
+</div>
+{% endblock %}

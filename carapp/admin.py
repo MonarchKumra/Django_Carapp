@@ -11,10 +11,10 @@ class FeatureAdmin(admin.ModelAdmin):
 
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'cartype')
+    list_display = ('name', 'cartype', 'price', 'instock')
     list_filter = ('cartype', 'features')
     search_fields = ('name',)
-    filter_horizontal = ('features',)  # Allows selecting multiple features in a horizontal widget
+    filter_horizontal = ('features',)
 
 @admin.register(Buyer)
 class BuyerAdmin(admin.ModelAdmin):

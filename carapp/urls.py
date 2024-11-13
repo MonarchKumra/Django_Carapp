@@ -10,6 +10,7 @@ urlpatterns = [
     # path('car/<int:cartype_no>/', views.cardetail, name='cardetail'),
     path('car/<int:pk>/', views.CarDetailView.as_view(), name='cardetail'),
     path('vehicles/', views.vehicles, name='vehicles'),
-    path('/orderhere/', views.orderhere, name='orderhere'),
+    path('orderhere/', views.orderhere, name='orderhere'),
+    path('teamdetail/', views.teamdetail, name='teamdetail'),
 
 ]

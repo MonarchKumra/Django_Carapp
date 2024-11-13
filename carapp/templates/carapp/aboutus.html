@@ -1,9 +1,28 @@
 {% extends "carapp/base.html" %}
 
-{% block title %} About Page {% endblock %}
+{% block title %}About Us{% endblock %}
 
-{%block content %}
+{% block content %}
+<div class="container">
+    <h2>About Us</h2>
+    <p>
+        Welcome to Car Site! Our platform is dedicated to car enthusiasts and potential buyers who want to explore a wide range of car types, compare features, and make informed purchase decisions. Our mission is to provide a streamlined and comprehensive car browsing experience.
+    </p>
 
-<p> This is About Page </p>
-<p><a class = "back-link" href = "{% url 'carapp:homepage' %}"> Back Home</a></p>
+    <h3>What We Offer</h3>
+    <p>
+        At Car Site, we bring together an extensive collection of vehicles from various manufacturers, complete with detailed features and specifications. Our platform is designed to help you find the perfect vehicle, whether you’re interested in electric cars, SUVs, trucks, or luxury sedans.
+    </p>
+
+    <h3>Our Mission</h3>
+    <p>
+        Our goal is to simplify the car search and purchasing process by giving you access to the latest information on a wide range of vehicles. We strive to offer an intuitive platform where users can explore and filter through options to find the best match for their needs.
+    </p>
+
+    <p>
+        Thank you for visiting Car Site, and we hope you enjoy discovering your next vehicle with us!
+    </p>
+
+    <p><a href="{% url 'carapp:teamdetail' %}">Meet Our Team</a></p>
+</div>
 {% endblock %}

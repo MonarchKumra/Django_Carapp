@@ -1,0 +1,28 @@
+<!-- carapp/templates/carapp/teamdetail.html -->
+{% extends "carapp/base.html" %}
+
+{% block title %}Our Team{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Meet Our Team</h2>
+    <p>We are a dedicated team of developers passionate about creating a seamless car browsing experience. Here’s a little more about us:</p>
+
+    <div class="team-member">
+        <h3>Ashma Garg</h3>
+    </div>
+
+    <div class="team-member">
+        <h3>Monarch Kumra</h3>
+    </div>
+
+    <div class="team-member">
+        <h3>Rugvedi More</h3>
+    </div>
+
+    <div class="team-member">
+        <h3>Tushar Karan</h3>
+    </div>
+</div>
+<a href="{% url 'carapp:homepage' %}" class="back-link">Back to Home</a>
+{% endblock %}

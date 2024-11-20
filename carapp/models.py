@@ -25,7 +25,7 @@ class Vehicle(models.Model):
 
 class Buyer(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
 
     def __str__(self):
         return self.name
@@ -34,6 +34,7 @@ class OrderVehicle(models.Model):
     vehicle = models.ForeignKey(Vehicle, related_name='orders', on_delete=models.CASCADE)
     buyer = models.ForeignKey(Buyer, related_name='orders', on_delete=models.CASCADE)
     vehicles_ordered = models.PositiveIntegerField()
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Order by {self.buyer.name} for {self.vehicle.name} (Quantity: {self.vehicles_ordered})"

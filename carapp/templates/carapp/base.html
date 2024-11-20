@@ -13,10 +13,21 @@
             <nav>
                 <a href="{% url 'carapp:homepage' %}">Home</a> |
                 <a href="{% url 'carapp:aboutus' %}">About Us</a> | 
-                <a href="{% url 'carapp:vehicles' %}">Vehicles</a>
+                <a href="{% url 'carapp:vehicles' %}">Vehicles</a> | 
+                <a href="{% url 'carapp:myorders' %}">My Orders</a>
             </nav>
             <hr>
 
+    <!-- User Authentication Status -->
+         <div style="margin-bottom: 20px; text-align: right;">
+            {% if user.is_authenticated %}
+                <p>Logged in as: <strong>{{ user.username }}</strong></p>
+                <a href="{% url 'carapp:logout' %}">Log Out</a>
+            {% else %}
+                <a href="{% url 'carapp:login' %}">Log In</a> |
+                <a href="{% url 'carapp:signup' %}">Sign Up</a>
+            {% endif %}
+        </div>
 <!-----            
             <form action="{% url 'carapp:search' %}" method="get" style="display:inline;">
                 <input type="text" name="q" placeholder="Search Car Types">

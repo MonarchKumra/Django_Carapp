@@ -10,10 +10,13 @@
         <a href="{% url 'carapp:aboutus' %}">About Us</a>
         <a href="{% url 'carapp:search' %}">Search</a>
         <a href="{% url 'carapp:vehicles' %}">Vehicles</a>
-        <a href="{% url 'carapp:teamdetail' %}">Team Detail</a>
+        <a href="{% url 'carapp:myorders' %}">My Orders</a>
     </nav>
 
     <h2>Welcome to Car Site</h2>
+
+    <p><strong>Homepage Visits:</strong> {{ session_count }}</p>
+    <p><strong>Cookie:</strong> {{ request.COOKIES.homepage_visit }}</p>
     
     <ul class="car-list">
         {% for cartype in cartype_list %}

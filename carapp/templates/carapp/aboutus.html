@@ -5,6 +5,9 @@
 {% block content %}
 <div class="container">
     <h2>About Us</h2>
+
+    <p><strong>About Us Page Visits:</strong> {{ session_count }}</p>
+    <p><strong>Cookie:</strong> {{ request.COOKIES.aboutus_visit }}</p>
     <p>
         Welcome to Car Site! Our platform is dedicated to car enthusiasts and potential buyers who want to explore a wide range of car types, compare features, and make informed purchase decisions. Our mission is to provide a streamlined and comprehensive car browsing experience.
     </p>

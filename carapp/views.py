@@ -155,7 +155,7 @@ def logout_here(request):
     logout(request)
     return redirect('carapp:homepage')
     
-@login_required
+@login_required(login_url='carapp:login')
 def list_of_orders(request):
     user = request.user
     try:
